@@ -37,7 +37,7 @@ void CollisionDetector::check_friendly_sensor_collisions() {
 }
 
 void CollisionDetector::check_enemy_sensor_collisions() {
-    //check enemy_sensors_ against friendly_sensors_, friendly_projectiles_, 
+    //check enemy_sensors_ against friendly_sensors_, friendly_projectiles_, friendly_ships_
     for (auto enemy_sensor : enemy_sensors_) {
         std::vector<Hitbox> enemy_sensor_hitboxes = enemy_sensor->get_hitboxes();
 		int hitbox_number = 0;
@@ -55,6 +55,13 @@ void CollisionDetector::check_enemy_sensor_collisions() {
                 for (auto friendly_hitbox : friendly_projectile->get_hitboxes()) {
                     if (enemy_hitbox.is_overlapping(friendly_hitbox)) {
                         enemy_sensor->notify_collision(friendly_projectile, hitbox_number);
+                    }
+                }
+            }
+            for (auto friendly_ship : friendly_ships_) {
+                for (auto friendly_hitbox : friendly_ship->get_hitboxes()) {
+                    if (enemy_hitbox.is_overlapping(friendly_hitbox)) {
+                        enemy_sensor->notify_collision(friendly_ship, hitbox_number);
                     }
                 }
             }

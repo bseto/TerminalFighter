@@ -14,6 +14,7 @@ extern "C" {
 
 using namespace std;
 
+#include "game_constants.h"
 #include "delay.h"
 #include "universe.h"
 #include "missile_launcher.h"
@@ -158,7 +159,7 @@ int main(int argc, char* argv[])
     }
 
     Universe universe(main_renderer);
-    MissileLauncher test_launcher;
+    MissileLauncher test_launcher = MissileLauncher(FRIENDLY);
     test_launcher.add_listener(&universe);
 
     //Render red filled quad
@@ -171,7 +172,7 @@ int main(int argc, char* argv[])
             x = 0;
         x += 10;
 
-        test_launcher.create_missile(x, SCREEN_WIDTH / 2, 0, -2.2);
+        test_launcher.create_missile(0, -2.2, x, SCREEN_WIDTH / 2);
 
         processEvents();
         universe.update_all();
@@ -185,6 +186,3 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
-
-
-

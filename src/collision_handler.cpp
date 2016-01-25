@@ -155,7 +155,7 @@ void CollisionHandler::check_enemy_ship_collisions() {
             
             for (auto friendly_ship : friendly_ships_) {
                 for (auto friendly_hitbox : friendly_ship->get_hitboxes()) {
-                    if (collision_detector_.is_overlapping(fenemy_ship_hitbox, riendly_hitbox)) {
+                    if (collision_detector_.is_overlapping(enemy_ship_hitbox, friendly_hitbox)) {
                         enemy_ship->notify_collision(friendly_ship, hitbox_number);
                     }
                 }
@@ -164,4 +164,51 @@ void CollisionHandler::check_enemy_ship_collisions() {
             hitbox_number++;
         }
     }
+}
+
+/*** ADD FUNCTIONS ***/
+void CollisionHandler::add_friendly_sensor(Sensor *friendly_sensor) {
+    friendly_sensors_[friendly_sensor->id()] = friendly_sensor; 
+}
+
+void CollisionHandler::add_friendly_ship(Ship *friendly_ship){
+   friendly_ships_[friendly_ship->id()] = friendly_ship; 
+}
+
+void CollisionHandler::add_friendly_projectile(Projectile *friendly_projectile){
+    friendly_projectiles_[friendly_projectile->id()] = friendly_projectile; 
+}
+
+void CollisionHandler::add_enemy_sensor(Sensor *enemy_sensor){
+    enemy_sensors_[enemy_sensor->id()] = enemy_sensor; 
+    
+}
+
+void CollisionHandler::add_enemy_ship(Ship *enemy_ship){
+    enemy_ships_[enemy_ship->id()] = enemy_ship; 
+}
+
+void CollisionHandler::add_enemy_projectile(Projectile *enemy_projectile){
+     enemy_projectiles_[enemy_projectile->id()] = enemy_projectile; 
+}
+
+/*** REMOVE FUNCTIONS ***/ 
+
+void CollisionHandler::remove_friendly_sensor(Sensor *friendly_sensor){
+   friendly_sensors_.erase(friendly_sensor->id());
+}
+void CollisionHandler::remove_friendly_ship(Ship *friendly_ship){
+    friendly_ships_.erase(friendly_ship->id());
+}
+void CollisionHandler::remove_friendly_projectile(Projectile *friendly_projectile){
+    friendly_projectiles_.erase(friendly_projectile->id());
+}
+void CollisionHandler::remove_enemy_sensor(Sensor *enemy_sensor){
+    enemy_sensors_.erase(enemy_sensor->id());
+}
+void CollisionHandler::remove_enemy_ship(Ship *enemy_ship){
+    enemy_ships_.erase(enemy_ship->id());
+}
+void CollisionHandler::remove_enemy_projectile(Projectile *enemy_projectile){
+    enemy_projectiles_.erase(enemy_projectile->id());
 }

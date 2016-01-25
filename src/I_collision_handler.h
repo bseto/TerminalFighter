@@ -1,4 +1,7 @@
 #pragma once
+#include "sensor.h"
+#include "ship.h"
+#include "projectile.h"
 
 class I_CollisionHandler {
 public:
@@ -23,4 +26,4 @@ public:
     virtual void remove_enemy_ship(Ship *enemy_ship) = 0; 
     virtual void remove_enemy_projectile(Projectile *enemy_projectile) = 0; 
 
-} 
+};

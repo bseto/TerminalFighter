@@ -4,6 +4,8 @@
 #include "hitbox.h"
 #include <vector>
 
+class Ship;
+
 class Projectile : public GameObject {
 public:
 	Projectile(double x_pos, double y_pos, double x_vel, double y_vel)
@@ -17,6 +19,9 @@ public:
 	virtual const double x_vel() const { return x_vel_; }
 	virtual const double y_vel() const { return y_vel_; }
 	virtual std::vector<Hitbox> get_hitboxes() = 0;
+
+	virtual void notify_collision(Projectile* sensed_sensor, int hitbox_number) = 0;
+	virtual void notify_collision(Ship* sensed_sensor, int hitbox_number) = 0;
 
 protected:
 	double x_vel_;

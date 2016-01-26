@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "missile.h"
+#include "ship.h"
 
 SDL_Texture* Missile::missile_texture_ = NULL;
 
@@ -28,3 +29,12 @@ void Missile::set_texture(SDL_Texture* texture) {
 std::vector<Hitbox> Missile::get_hitboxes() {
     return std::vector<Hitbox>();
 }
+
+void  Missile::notify_collision(Projectile* sensed_sensor, int hitbox_number) {
+	//TODO
+}
+
+void  Missile::notify_collision(Ship* sensed_sensor, int hitbox_number) {
+	//TODO
+}
+
